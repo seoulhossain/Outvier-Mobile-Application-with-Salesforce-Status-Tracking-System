@@ -1,0 +1,642 @@
+/* ── Shared utils ────────────────────────────────────────────── */
+.page-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  font-size: 18px;
+  color: #888;
+}
+
+/* ── Mobile shell ────────────────────────────────────────────── */
+.mobile-shell {
+  min-height: 100vh;
+  background: #f0f2f5;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  max-width: 480px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 24px;
+}
+
+/* ── Dashboard header ────────────────────────────────────────── */
+.dash-header {
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid #e8e8e8;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.dash-title {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #111;
+}
+
+.dash-subtitle {
+  margin-top: 2px;
+  font-size: 12px;
+  color: #777;
+}
+
+.dash-header-right {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.dash-icon-btn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #444;
+  padding: 0;
+}
+
+.dash-logout-btn {
+  border: none;
+  background: #1a237e;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* ── Welcome banner ──────────────────────────────────────────── */
+.dash-welcome {
+  background: #e8eaf6;
+  margin: 14px 16px 0;
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.dash-welcome-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.dash-welcome-label {
+  margin: 0;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: #666;
+}
+
+.dash-welcome-name {
+  margin: 4px 0 0;
+  font-size: 24px;
+  line-height: 1.1;
+  color: #111;
+}
+
+.dash-welcome-text {
+  margin: 12px 0 0;
+  font-size: 14px;
+  color: #333;
+  line-height: 1.5;
+}
+
+.dash-warning-pill {
+  background: #fff7ed;
+  color: #9a3412;
+  border-radius: 999px;
+  padding: 8px 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.dash-summary-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.dash-summary-card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.dash-summary-value {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1a237e;
+}
+
+.dash-summary-label {
+  font-size: 12px;
+  color: #666;
+}
+
+.dash-error {
+  margin: 14px 16px 0;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: #fff3f3;
+  color: #b42318;
+  font-size: 13px;
+}
+
+/* ── List view ───────────────────────────────────────────────── */
+.dash-section-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: #888;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  margin: 20px 20px 6px;
+}
+
+.dash-list {
+  background: #fff;
+  border-radius: 12px;
+  margin: 0 16px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+}
+
+.dash-list-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 15px 16px;
+  text-decoration: none;
+  color: #222;
+  border-bottom: 1px solid #f0f0f0;
+  transition: background 0.15s;
+}
+
+.dash-list-item:last-child {
+  border-bottom: none;
+}
+
+.dash-list-item:hover {
+  background: #f5f5f5;
+}
+
+.dash-list-icon {
+  font-size: 20px;
+  width: 28px;
+  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.dash-list-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.dash-list-title {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.dash-list-meta {
+  font-size: 12px;
+  color: #777;
+}
+
+.dash-list-status {
+  color: #fff;
+  border-radius: 20px;
+  padding: 2px 10px;
+  font-size: 11px;
+  font-weight: 600;
+  align-self: flex-start;
+  margin-top: 2px;
+}
+
+.dash-list-alert {
+  background: #f44336;
+  color: #fff;
+  border-radius: 50%;
+  min-width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 0 4px;
+}
+
+.dash-list-arrow {
+  font-size: 20px;
+  color: #bbb;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Back button shared ──────────────────────────────────────── */
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #3949ab;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.back-btn:hover {
+  text-decoration: underline;
+}
+
+/* legacy — kept so other pages don't break */
+.page { min-height: 100vh; background: #f4f6fb; font-family: 'Segoe UI', system-ui, sans-serif; }
+
+/* ── ADMIN SHELL ──────────────────────────────────────────────── */
+.admin-shell { background: #eceff1; }
+
+.admin-header {
+  background: #1c3a4a;
+  border-bottom: none;
+}
+.admin-header .dash-title { color: #fff; }
+.admin-header .dash-subtitle { color: #b0bec5; }
+
+.admin-subtitle { color: #b0bec5 !important; }
+
+.admin-logout-btn {
+  background: #37474f !important;
+  border: 1px solid #546e7a;
+}
+.admin-logout-btn:hover { background: #455a64 !important; }
+
+/* Admin role banner */
+.admin-role-banner {
+  background: linear-gradient(135deg, #1c3a4a 0%, #2e5f78 100%);
+  margin: 14px 16px 0;
+  border-radius: 12px;
+  padding: 18px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: #fff;
+}
+
+.admin-role-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 999px;
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  width: fit-content;
+}
+.admin-role-badge svg { width: 14px; height: 14px; }
+
+.admin-welcome-name {
+  font-size: 22px;
+  font-weight: 700;
+  margin-top: 6px;
+}
+
+.admin-role-right {
+  font-size: 13px;
+  color: #b0d4e8;
+  line-height: 1.5;
+}
+
+/* Admin stat cards */
+.dash-summary-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.admin-stat { border-left: 3px solid #1c3a4a; }
+.admin-stat--warn { border-left: 3px solid #e53935; }
+.admin-val { color: #1c3a4a !important; }
+.admin-val-warn { color: #e53935 !important; }
+
+/* Admin icon tint */
+.admin-icon { color: #1c3a4a !important; }
+
+/* Admin student name line */
+.admin-student-name {
+  color: #1c3a4a !important;
+  font-weight: 600 !important;
+  font-size: 13px !important;
+}
+
+/* ── ADMIN INFO BOX ───────────────────────────────────────────── */
+.admin-info-box {
+  margin: 14px 16px 0;
+  background: #e3f2fd;
+  border: 1px solid #90caf9;
+  border-left: 4px solid #1c3a4a;
+  border-radius: 10px;
+  padding: 14px 16px;
+}
+.admin-info-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #1c3a4a;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+.admin-info-title svg { width: 16px; height: 16px; }
+.admin-info-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 0;
+}
+.admin-info-list li {
+  font-size: 13px;
+  color: #333;
+  padding-left: 14px;
+  position: relative;
+  line-height: 1.4;
+}
+.admin-info-list li::before {
+  content: '›';
+  position: absolute;
+  left: 0;
+  color: #1c3a4a;
+  font-weight: 700;
+}
+
+/* ── STUDENT INFO BOX ─────────────────────────────────────────── */
+.student-info-box {
+  margin: 14px 16px 0;
+  background: #e8eaf6;
+  border: 1px solid #c5cae9;
+  border-left: 4px solid #1a237e;
+  border-radius: 10px;
+  padding: 12px 14px;
+}
+.student-info-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: #1a237e;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  margin-bottom: 8px;
+}
+.student-info-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.student-info-list li {
+  font-size: 13px;
+  color: #333;
+  padding-left: 14px;
+  position: relative;
+  line-height: 1.4;
+}
+.student-info-list li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: #1a237e;
+  font-size: 11px;
+  font-weight: 700;
+}
+.status-badge { color:#fff; border-radius:20px; padding:4px 12px; font-size:12px; font-weight:600; }
+
+
+.app-header {
+  background: #1a237e;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  height: 60px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header-logo {
+  font-size: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-title {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.notif-btn {
+  position: relative;
+  color: #fff;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.badge {
+  position: absolute;
+  top: -6px;
+  right: -8px;
+  background: #f44336;
+  color: #fff;
+  border-radius: 50%;
+  font-size: 10px;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+}
+
+.btn-logout {
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 6px;
+  padding: 6px 14px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-logout:hover {
+  background: rgba(255,255,255,0.25);
+}
+
+.main-content {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 32px 24px;
+}
+
+.welcome-banner {
+  margin-bottom: 28px;
+}
+
+.welcome-banner h2 {
+  margin: 0 0 4px;
+  font-size: 24px;
+  color: #1a237e;
+}
+
+.welcome-sub {
+  color: #888;
+  margin: 0;
+  font-size: 14px;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 64px 24px;
+  color: #aaa;
+}
+
+.empty-state span {
+  font-size: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.app-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.app-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.app-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+
+.app-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.app-program {
+  font-weight: 600;
+  font-size: 15px;
+  color: #222;
+  flex: 1;
+}
+
+.status-badge {
+  color: #fff;
+  border-radius: 20px;
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.app-meta {
+  display: flex;
+  gap: 16px;
+  font-size: 13px;
+  color: #777;
+}
+
+.doc-alert {
+  background: #fff3e0;
+  border: 1px solid #ffb74d;
+  color: #e65100;
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 13px;
+}
+
+.app-card-footer {
+  font-size: 13px;
+  color: #3949ab;
+  font-weight: 600;
+}
+
+/* Back button shared */
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #3949ab;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.back-btn:hover {
+  text-decoration: underline;
+}

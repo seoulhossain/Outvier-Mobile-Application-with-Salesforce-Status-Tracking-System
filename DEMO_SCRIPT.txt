@@ -1,0 +1,189 @@
+╔══════════════════════════════════════════════════════════════════════════════╗
+║           OUTVIER SYSTEM — LIVE DEMO SCRIPT (Screen Recording Guide)        ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+This guide walks through ONE key scenario for the screen recording:
+  "Admin changes an application status → student sees it on their dashboard"
+
+Keep this file open in one corner while you record.
+App URLs:  Student Portal  →  http://localhost:3000
+           Admin Panel     →  http://localhost:8000/admin
+           API Root        →  http://localhost:8000/api/
+
+Demo Accounts
+─────────────
+  Student   :  username=alex        password=alex1234
+  Admin     :  username=admin       password=arka
+  (extras)  :  priya / priya5678    tom / tom9012
+
+
+══════════════════════════════════════════════════════════════════════════════
+STEP 1 — START THE SYSTEM  (if not already running)
+══════════════════════════════════════════════════════════════════════════════
+
+  bash start.sh
+
+Wait until you see "Celery worker ready" and "Vite server running".
+All four services start automatically: Django, PostgreSQL, Redis, Celery.
+
+
+══════════════════════════════════════════════════════════════════════════════
+STEP 2 — SHOW STUDENT VIEW (before the admin changes anything)
+══════════════════════════════════════════════════════════════════════════════
+
+  a) Open  http://localhost:3000  in your browser.
+     → The login card appears. Note the "Create an account" link for new students.
+
+  b) Log in as:  alex / alex1234
+     → Student dashboard loads with BLUE header ("Outvier Student Portal").
+     → Welcome banner shows "Alex", 2 applications, and unread notification count.
+     → Two application cards: MBA (Under Review) and MSc Computer Science (Conditional Offer).
+
+  c) Click the MBA card.
+     → Status Detail page opens.
+     → Progress stepper shows stages: Submitted ✓ → Under Review ✓ → (rest empty).
+     → Current stage "Under Review" is highlighted in bold blue.
+     → Note the date and the admissions note "Under review by admissions".
+
+  d) Tap "View Document Status" (bottom of the page).
+     → Documents page: Passport (Verified), Academic Transcript (Pending),
+       Work Experience Letter (MISSING — red pill).
+     → This missing document causes the red badge "1" on the MBA card.
+
+  e) Go back to Dashboard → Notifications shortcut.
+     → Show existing notifications (status changed, document alerts, deadline).
+
+  ★  PAUSE HERE — leave the student portal open, it will update in a moment.
+
+
+══════════════════════════════════════════════════════════════════════════════
+STEP 3 — ADMIN MAKES A CHANGE  (this is what the teacher needs to see)
+══════════════════════════════════════════════════════════════════════════════
+
+  a) Open a NEW browser tab.
+     Go to:  http://localhost:8000/admin
+     Log in with:  admin / arka
+
+  b) In the Django Admin sidebar click  Applications → Applications.
+     → You can see all applications for all students.
+
+  c) Find Alex's MBA application (Student: alex, program: MBA).
+     Click it to open the edit form.
+
+  d) Change the "Status" dropdown from:
+       Under Review   →   Conditional Offer
+     Click SAVE.
+
+     What happens automatically in the background:
+       1. The Application record is updated in PostgreSQL.
+       2. A new StatusHistory row is created with the new status + timestamp.
+       3. The notifications/engine.py runs and creates 2 Notification records for alex.
+       4. If real email/FCM credentials were configured, an email and push notification
+          would also fire. In demo mode, the email prints to the Django console.
+
+  e) (Optional — bonus demo)  While still in Django Admin:
+     Go to  Applications → Documents → find Alex's MBA "Work Experience Letter".
+     Change "Verification status" from  missing  →  pending.
+     Click SAVE.
+     → This simulates the admissions team saying "we received the document, reviewing it."
+
+
+══════════════════════════════════════════════════════════════════════════════
+STEP 4 — STUDENT SEES THE RESULT  (switch back to the student tab)
+══════════════════════════════════════════════════════════════════════════════
+
+  a) Switch back to the first browser tab (logged in as alex).
+     Reload the page (Cmd+R / F5).
+
+  b) On the Dashboard:
+     → MBA card now shows  "Conditional Offer"  (purple pill) instead of "Under Review".
+     → If you also changed the document: the missing doc badge is gone (or reduced).
+
+  c) Click the MBA card.
+     → Status Detail: "Conditional Offer" is now the highlighted current stage.
+     → "Under Review" shows as completed above it.
+     → The stepper shows the full progression: Submitted ✓ → Under Review ✓ → Conditional Offer ✓
+
+  d) Go to Notifications (bell icon).
+     → Two new notifications appear at the top:
+         "Your application status is now Conditional Offer"
+         "Application Status Changed — Your MBA has moved to Conditional Offer stage."
+     → These were created automatically when the admin saved the change.
+
+  ★  This is the full end-to-end demonstration:
+     Admin action in Django Admin → database update → automatic notification → student sees it.
+
+
+══════════════════════════════════════════════════════════════════════════════
+STEP 5 — SHOW ADMIN DASHBOARD  (for completeness)
+══════════════════════════════════════════════════════════════════════════════
+
+  a) Open  http://localhost:3000  in the second browser tab.
+     Log out from any previous session → Log in as:  admin / arka
+
+  b) Admin dashboard loads with DARK NAVY header.
+     Note the visual difference from the student blue header.
+     → "Administrator" badge in the banner.
+     → Stats overview: Total Applications, In Progress, Enrolled, Docs Missing.
+     → "What you can do as Admin" info box with all admin capabilities listed.
+     → All applications listed with each student's name visible on the card.
+
+  c) Click "Salesforce Sync Logs" in the Admin Tools section.
+     → Sync Logs page lists every Celery sync run.
+     → Success rows show how many records were synced.
+     → Failed rows show the error (INVALID_LOGIN / OAuth expired) — expected in demo
+       because we don't have real Salesforce credentials. The system retries gracefully.
+
+  d) (Optional) Open the API in a browser tab:
+     http://localhost:8000/api/
+     → Shows the browsable DRF API root with all endpoints.
+
+
+══════════════════════════════════════════════════════════════════════════════
+STEP 6 — SHOW REGISTRATION  (if time allows)
+══════════════════════════════════════════════════════════════════════════════
+
+  a) Go to  http://localhost:3000  → click "Create an account".
+  b) Fill in the registration form:
+       First Name: Test   Last Name: Student
+       Username: newstudent   Email: test@example.com
+       Student ID: S99999   Password: test1234pass
+  c) Click "CREATE ACCOUNT".
+     → On success, redirected to login with green banner "Account created successfully!".
+  d) Log in with the new account — shows the student dashboard.
+     (No applications yet as no seed data was added for this new user.)
+
+
+══════════════════════════════════════════════════════════════════════════════
+QUICK REFERENCE — What each role can do
+══════════════════════════════════════════════════════════════════════════════
+
+ADMIN can (via Django Admin at localhost:8000/admin):
+  • View and manage ALL student applications
+  • Change application status → automatically triggers student notification
+  • Add/edit documents, offer details, communication logs
+  • Create, edit, or deactivate student user accounts
+  • Monitor Salesforce sync history and error logs
+  • Trigger a manual sync via the management command:
+      python manage.py sync_salesforce   (if SF credentials configured)
+
+STUDENT can see (at localhost:3000):
+  • Their own application list and status (RBAC — cannot see other students' data)
+  • Full status timeline — every stage and date admin moved them through
+  • Document checklist with Verified / Pending / Missing status
+  • Offer details when a conditional or unconditional offer is issued
+  • Communication logs — calls, emails, and notes logged by admissions staff
+  • All notifications — every time admin changes their status or documents
+
+
+══════════════════════════════════════════════════════════════════════════════
+RECORDING TIPS
+══════════════════════════════════════════════════════════════════════════════
+
+  • Use two browser windows side by side: student on left, admin on right.
+  • Zoom to 110% in the browser for clearer screenshots during recording.
+  • Start recording AFTER the system is fully loaded (Django + Vite running).
+  • For the screen recording, the core narrative is:
+      "I log in as admin, change a status, switch to the student window,
+       reload, and the student dashboard reflects the change with a notification."
+  • Total expected screen recording time: 3–5 minutes.

@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+*.egg-info/
+*.pyo
+.Python
+
+# Django
+outvier_backend/staticfiles/
+outvier_backend/db.sqlite3
+outvier_backend/.env
+outvier_backend/.demo_seeded
+
+# Secrets — never commit
+*.env
+.env
+.env.*
+!.env.example
+
+# Node / React
+outvier_frontend/node_modules/
+outvier_frontend/dist/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+
+# Scripts used for one-off tasks
+fix_pptx.py

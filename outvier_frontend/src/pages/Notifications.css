@@ -1,0 +1,28 @@
+.mobile-shell { min-height:100vh; background:#f0f2f5; font-family:'Segoe UI',system-ui,sans-serif; max-width:480px; margin:0 auto; display:flex; flex-direction:column; padding-bottom:24px; }
+.page-loading { display:flex; align-items:center; justify-content:center; height:100vh; font-size:18px; color:#888; }
+.screen-header { background:#fff; display:flex; align-items:center; justify-content:space-between; padding:16px 20px; border-bottom:1px solid #e8e8e8; position:sticky; top:0; z-index:50; }
+.back-icon { background:none; border:none; font-size:26px; color:#333; cursor:pointer; padding:0; width:32px; display:inline-flex; align-items:center; justify-content:center; }
+.screen-title { font-size:16px; font-weight:700; letter-spacing:1px; color:#111; }
+.screen-body { flex:1; padding:16px; display:flex; flex-direction:column; gap:0; }
+
+.notif-empty { text-align:center; padding:60px 20px; color:#aaa; }
+.notif-empty-icon { font-size:48px; display:block; margin:0 auto 12px; }
+
+.notif-list { background:#fff; border-radius:12px; overflow:hidden; box-shadow:0 1px 4px rgba(0,0,0,0.07); }
+
+.notif-row { display:flex; align-items:flex-start; gap:14px; padding:14px 16px; border-bottom:1px solid #f5f5f5; transition:background 0.15s; }
+.notif-row:last-child { border-bottom:none; }
+.notif-unread { background:#f0f4ff; }
+.notif-read { background:#fff; }
+
+.notif-dot { width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:16px; background:#e8eaf6; flex-shrink:0; margin-top:2px; }
+.notif-dot-read { background:#f5f5f5; opacity:0.6; }
+
+.notif-content { flex:1; display:flex; flex-direction:column; gap:3px; }
+.notif-title { font-size:14px; font-weight:600; color:#222; }
+.notif-body { font-size:13px; color:#555; line-height:1.4; }
+.notif-time { font-size:11px; color:#aaa; margin-top:2px; }
+
+.notif-mark-btn { background:#e8eaf6; border:none; color:#3949ab; border-radius:20px; padding:5px 12px; font-size:12px; font-weight:600; cursor:pointer; flex-shrink:0; align-self:center; display:inline-flex; align-items:center; justify-content:center; }
+.notif-mark-btn:hover { background:#c5cae9; }
+

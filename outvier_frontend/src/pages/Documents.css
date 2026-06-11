@@ -1,0 +1,32 @@
+/* Mobile shell shared */
+.mobile-shell {
+  min-height: 100vh;
+  background: #f0f2f5;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  max-width: 480px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 70px;
+}
+.page-loading { display:flex; align-items:center; justify-content:center; height:100vh; font-size:18px; color:#888; }
+.screen-header { background:#fff; display:flex; align-items:center; justify-content:space-between; padding:16px 20px; border-bottom:1px solid #e8e8e8; position:sticky; top:0; z-index:50; }
+.back-icon { background:none; border:none; font-size:26px; color:#333; cursor:pointer; padding:0; width:32px; display:inline-flex; align-items:center; justify-content:center; }
+.screen-title { font-size:16px; font-weight:700; letter-spacing:1px; color:#111; }
+.screen-body { flex:1; padding:16px; display:flex; flex-direction:column; gap:14px; }
+.section-box { background:#fff; border-radius:12px; padding:16px; box-shadow:0 1px 4px rgba(0,0,0,0.07); }
+.section-heading { margin:0 0 14px; font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:0.8px; color:#555; }
+
+/* Doc list */
+.doc-list { display:flex; flex-direction:column; }
+.doc-row { display:flex; align-items:center; gap:12px; padding:13px 0; border-bottom:1px solid #f5f5f5; }
+.doc-row:last-child { border-bottom:none; }
+.doc-file-icon { font-size:20px; display:inline-flex; align-items:center; justify-content:center; color:#5c6bc0; }
+.doc-name { flex:1; font-size:14px; color:#222; }
+.doc-badge { color:#fff; border-radius:20px; padding:3px 12px; font-size:12px; font-weight:600; white-space:nowrap; }
+
+/* Upload button */
+/* Bottom nav */
+.dash-bottom-nav { position:fixed; bottom:0; left:50%; transform:translateX(-50%); width:100%; max-width:480px; background:#fff; display:flex; justify-content:space-around; padding:10px 0 14px; border-top:1px solid #e8e8e8; box-shadow:0 -2px 8px rgba(0,0,0,0.08); z-index:100; }
+.nav-item { background:none; border:none; font-size:22px; display:inline-flex; align-items:center; justify-content:center; cursor:pointer; color:#999; padding:2px 8px; }
+.nav-item.active { color:#1a237e; }
